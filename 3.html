@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل درجات الطلاب</title>
+    <style>
+        body {
+            background-color: black;
+            color: lime;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        select, button {
+            background-color: black;
+            color: lime;
+            border: 1px solid lime;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .section {
+            margin: 20px;
+            border: 1px solid lime;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>تعديل درجات الطلاب للصف الأول الثانوي</h1>
+    <div id="mainSection" class="section">
+        <h2>اختر المادة</h2>
+        <select id="subjects">
+            <option value="اللغة العربية">اللغة العربية</option>
+            <option value="التاريخ">التاريخ</option>
+            <option value="اللغة الأجنبية الأولى">اللغة الأجنبية الأولى</option>
+            <option value="الفلسفة والمنطق">الفلسفة والمنطق</option>
+            <option value="علوم متكاملة">علوم متكاملة</option>
+            <option value="الرياضيات">الرياضيات</option>
+        </select>
+        <div id="adjustmentSection" class="hidden">
+            <h3>حدد نسبة النجاح</h3>
+            <select id="percentageSelect">
+                <!-- سيتم إنشاء الخيارات ديناميكيًا -->
+            </select>
+            <p>المبلغ: <span id="amount">0</span> جنيه</p>
+        </div>
+        <button onclick="addSubject()">إضافة مادة</button>
+        <button onclick="saveChanges()">حفظ</button>
+    </div>
+    <div id="summarySection" class="hidden">
+        <h2>تفاصيل المبلغ</h2>
+        <ul id="summaryList"></ul>
+        <p>الإجمالي: <span id="totalAmount">0</span> جنيه</p>
+        <p>تم حفظ بياناتك بنجاح في الكنترول.</p>
+        <p>الرجاء سداد هذا المبلغ لإكمال جميع الخطوات.</p>
+        <p>لمعرفة كيفية دفع المبلغ، تواصل مع فريق الدعم عبر الواتساب.</p>
+        <button onclick="contactSupport()">تواصل عبر الواتساب</button>
+    </div>
+
+    <script>
+        let subjects = [];
+        let maxSubjects = 3;
+
+        // إعداد قائمة النسب
+        function populatePercentageSelect() {
+            const percentageSelect = document.getElementById("percentageSelect");
+            percentageSelect.innerHTML = "";
+            for (let i = 50; i <= 100; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = `${i}%`;
+                percentageSelect.appendChild(option);
+            }
+        }
+
+        function addSubject() {
+            const selectedSubject = document.getElementById("subjects").value;
+            const selectedPercentage = parseInt(document.getElementById("percentageSelect").value);
+            const amount = (selectedPercentage - 50) * 5;
+
+            if (subjects.length >= maxSubjects) {
+                alert("يمكنك اختيار 3 مواد فقط.");
+                return;
+            }
+            if (subjects.some(s => s.name === selectedSubject)) {
+                alert("تم اختيار هذه المادة مسبقاً.");
+                return;
+            }
+
+            subjects.push({ name: selectedSubject, percentage: selectedPercentage, amount });
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const summaryList = document.getElementById("summaryList");
+            const totalAmount = document.getElementById("totalAmount");
+            let total = 0;
+            summaryList.innerHTML = "";
+
+            subjects.forEach((subject, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    ${subject.name}: نسبة النجاح ${subject.percentage}% - ${subject.amount} جنيه
+                    <button onclick="removeSubject(${index})">حذف</button>
+                `;
+                summaryList.appendChild(li);
+                total += subject.amount;
+            });
+
+            totalAmount.textContent = total;
+            document.getElementById("summarySection").classList.remove("hidden");
+        }
+
+        function removeSubject(index) {
+            subjects.splice(index, 1);
+            updateSummary();
+        }
+
+        function saveChanges() {
+            alert("تم حفظ البيانات بنجاح.");
+        }
+
+        function contactSupport() {
+            window.open("https://wa.me/1234567890", "_blank");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            populatePercentageSelect();
+            document.getElementById("adjustmentSection").classList.remove("hidden");
+        });
+
+        document.getElementById("percentageSelect").addEventListener("change", function () {
+            const selectedPercentage = parseInt(this.value);
+            const amount = (selectedPercentage - 50) * 5;
+            document.getElementById("amount").textContent = amount;
+        });
+    </script>
+</body>
+</html>

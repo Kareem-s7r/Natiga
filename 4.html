@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصف الثاني الثانوي</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #00ff00; /* لون النص أخضر ليزري */
+            text-align: center;
+        }
+        header {
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        form input, form select, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            background-color: black;
+            color: #00ff00;
+            font-size: 1em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        /* تعديل الشكل عند تمرير الماوس */
+        .next-button {
+            display: inline-block;
+            text-align: center;
+            background-color: black;
+            color: #00ff00;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .next-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>الصف الثاني الثانوي</h1>
+        <p>املأ البيانات التالية بدقة</p>
+    </header>
+    <main>
+        <form id="studentForm">
+            <label for="studentName">اسم الطالب</label>
+            <input type="text" id="studentName" placeholder="أدخل اسم الطالب" required>
+            
+            <label for="nationalId">الرقم القومي</label>
+            <input type="text" id="nationalId" placeholder="أدخل الرقم القومي" required>
+            
+            <label for="seatNumber">رقم الجلوس</label>
+            <input type="text" id="seatNumber" placeholder="أدخل رقم الجلوس" required>
+            
+            <label for="governorate">المحافظة</label>
+            <select id="governorate" required>
+                <option value="" disabled selected>اختر المحافظة</option>
+                <option value="القاهرة">القاهرة</option>
+                <option value="الجيزة">الجيزة</option>
+                <option value="الإسكندرية">الإسكندرية</option>
+                <option value="سوهاج">سوهاج</option>
+                <option value="قنا">قنا</option>
+                <option value="أسوان">أسوان</option>
+                <option value="الأقصر">الأقصر</option>
+                <option value="بني سويف">بني سويف</option>
+                <option value="المنيا">المنيا</option>
+                <option value="أسيوط">أسيوط</option>
+                <option value="بورسعيد">بورسعيد</option>
+                <option value="الإسماعيلية">الإسماعيلية</option>
+                <option value="السويس">السويس</option>
+                <option value="دمياط">دمياط</option>
+                <option value="الدقهلية">الدقهلية</option>
+                <option value="الشرقية">الشرقية</option>
+                <option value="الغربية">الغربية</option>
+                <option value="كفر الشيخ">كفر الشيخ</option>
+                <option value="الفيوم">الفيوم</option>
+                <option value="مطروح">مطروح</option>
+                <option value="البحر الأحمر">البحر الأحمر</option>
+                <option value="الوادي الجديد">الوادي الجديد</option>
+                <option value="شمال سيناء">شمال سيناء</option>
+                <option value="جنوب سيناء">جنوب سيناء</option>
+                <option value="المنوفية">المنوفية</option>
+            </select>
+            
+            <label for="district">الإدارة</label>
+            <input type="text" id="district" placeholder="أدخل اسم الإدارة" required>
+            
+            <label for="school">المدرسة</label>
+            <input type="text" id="school" placeholder="أدخل اسم المدرسة" required>
+            
+            <!-- تغيير الزر إلى رابط -->
+            <a href="1thanawy-moaad.html" class="next-button">التالي</a>
+        </form>
+    </main>
+</body>
+</html>
